@@ -1,4 +1,12 @@
-FROM cwpearson/opencl2.0-intel-cpu
+FROM nvidia/cuda:8.0-runtime-ubuntu16.04
+
+ENV http_proxy=
+ENV https_proxy=
+ENV DEBIAN_FRONTEND noninteractive
+ENV HOME /root
+RUN apt-get update && apt-get install -y software-properties-common && add-apt-repository -y ppa:graphics-drivers/ppa
+RUN apt-get update && apt-get install -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" \
+    nvidia-opencl-icd-384
 
 ENV HASHCAT_VERSION        hashcat-3.6.0
 ENV HASHCAT_UTILS_VERSION  1.8
@@ -11,12 +19,12 @@ RUN mkdir /hashcat
 
 #Install and configure hashcat
 RUN cd /hashcat && \
-    wget --no-check-certificate https://hashcat.net/files/${HASHCAT_VERSION}.7z && \
+    wget https://hashcat.net/files/${HASHCAT_VERSION}.7z && \
     7zr x ${HASHCAT_VERSION}.7z && \
     rm ${HASHCAT_VERSION}.7z
 
 RUN cd /hashcat && \
-    wget --no-check-certificate https://github.com/hashcat/hashcat-utils/releases/download/v${HASHCAT_UTILS_VERSION}/hashcat-utils-${HASHCAT_UTILS_VERSION}.7z && \
+    wget https://github.com/hashcat/hashcat-utils/releases/download/v${HASHCAT_UTILS_VERSION}/hashcat-utils-${HASHCAT_UTILS_VERSION}.7z && \
     7zr x hashcat-utils-${HASHCAT_UTILS_VERSION}.7z && \
     rm hashcat-utils-${HASHCAT_UTILS_VERSION}.7z
 
