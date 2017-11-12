@@ -8,7 +8,7 @@ RUN apt-get update && apt-get install -y software-properties-common && add-apt-r
 RUN apt-get update && apt-get install -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" \
     nvidia-opencl-icd-384
 
-ENV HASHCAT_VERSION        hashcat-3.6.0
+ENV HASHCAT_VERSION        hashcat-4.0.1
 ENV HASHCAT_UTILS_VERSION  1.8
 
 # Update & install packages for installing hashcat
