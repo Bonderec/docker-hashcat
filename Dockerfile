@@ -21,7 +21,7 @@ ENV DEBIAN_FRONTEND noninteractive
 ENV HOME /root
 RUN apt-get update && apt-get install -y software-properties-common && add-apt-repository -y ppa:graphics-drivers/ppa
 RUN apt-get update && apt-get install -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" \
-    nvidia-opencl-icd-384
+    nvidia-390
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
         clinfo && \
