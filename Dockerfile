@@ -28,8 +28,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     rm -rf /var/lib/apt/lists/*
 ################################ end nvidia opencl driver ################################
 
-ENV HASHCAT_VERSION        hashcat-3.6.0
-ENV HASHCAT_UTILS_VERSION  1.8
+ENV HASHCAT_VERSION        hashcat-5.0.0
+ENV HASHCAT_UTILS_VERSION  1.9
 
 # Update & install packages for installing hashcat
 RUN apt-get update && \
